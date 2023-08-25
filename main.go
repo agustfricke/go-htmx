@@ -77,6 +77,7 @@ func main() {
     }
 
 	h5 := func(w http.ResponseWriter, r *http.Request) {
+		time.Sleep(1 * time.Second)
 
         name := r.PostFormValue("name")
         ID := r.PostFormValue("ID") 

@@ -1,5 +1,9 @@
-<form hx-put="/put">
+<form hx-put="/put" hx-indicator="#spinner-{{ .ID }}">
     <input type="text" name="name" value="{{ .Name }}">
     <input type="text" hidden name="ID" value="{{ .ID }}">
-    <button type="submit">Update</button>
+    <button type="submit">
+    <span class="spinner-border spinner-border-sm htmx-indicator" 
+        id="spinner-{{ .ID }}" role="status" aria-hidden="true"></span>
+        Update
+    </button>
 </form>
