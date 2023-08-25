@@ -14,6 +14,9 @@ func main() {
 
     database.ConnectDB()
 
+    fs := http.FileServer(http.Dir("public"))
+    http.Handle("/public/", http.StripPrefix("/public/", fs))
+
 	http.HandleFunc("/add/", handlers.CreateTask)
 	http.HandleFunc("/delete/", handlers.DeleteTask)
 	http.HandleFunc("/edit/form/", handlers.FormEditTask)
