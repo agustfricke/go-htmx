@@ -19,13 +19,13 @@
             <ul class="list-group-item bg-primary text-white" id="task-list">
             {{ range . }} 
                 <li id="item-{{ .ID }}">
-                    {{ .Name }}  
+                    {{ .Name }} - {{ .ID }}
                     <button hx-get="/edit/form?name={{ .Name }}&ID={{ .ID }}" hx-target="#item-{{ .ID }}">
                         Edit
                     </button>
 
                     <button 
-                        hx-delete="/delete?={{ .ID }}"
+                        hx-delete="/delete/{{ .ID }}"
                         hx-swap="delete"
                         hx-target="#item-{{ .ID }}"
                         hx-indicator="#spinner-delete-{{ .ID }}"
