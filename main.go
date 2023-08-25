@@ -11,10 +11,6 @@ import (
 	"github.com/agustfricke/go-htmx-crud/models"
 )
 
-type Film struct {
-	Title    string
-	Director string
-}
 
 func main() {
 
@@ -39,15 +35,21 @@ func main() {
 	h2 := func(w http.ResponseWriter, r *http.Request) {
 		time.Sleep(1 * time.Second)
 		name := r.PostFormValue("name")
-
+        
+        var task models.Task 
         if name != "" {
             db := database.DB
-            task := models.Task{Name: name} 
+            task = models.Task{Name: name} 
             db.Create(&task)
         }
-		htmlStr := fmt.Sprintf("<li>%s</li>", name)
-		tmpl, _ := template.New("t").Parse(htmlStr)
-	    tmpl.Execute(w, nil)
+	    data := struct {Task models.Task}{Task: task,}
+
+	    tmpl := template.Must(template.ParseFiles("item.html"))
+	    err :=  tmpl.Execute(w, data)
+	    if err != nil {
+		    http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	    }
 
 	}
 

@@ -1,0 +1,18 @@
+<li id="item-{{ .Task.ID }}">
+    {{ .Task.Name }}  
+    <button hx-get="/edit/form?name={{ .Task.Name }}&ID={{ .Task.ID }}" hx-swap="outerHTML">
+        Edit
+    </button>
+
+    <button 
+        hx-delete="/delete?={{ .Task.ID }}"
+        hx-swap="delete"
+        hx-target="#item-{{ .Task.ID }}"
+        hx-indicator="#spinner-delete-{{ .Task.ID }}"
+        >
+        <span class="spinner-border spinner-border-sm htmx-indicator" 
+        id="spinner-delete-{{ .Task.ID }}" role="status" aria-hidden="true">
+        </span>
+            Del
+    </button>
+</li>
