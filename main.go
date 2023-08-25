@@ -66,37 +66,42 @@ func main() {
     h4 := func(w http.ResponseWriter, r *http.Request) {
         name := r.URL.Query().Get("name")
         ID := r.URL.Query().Get("ID")
-        htmlContent := `
-        <form hx-put="/put">
-            <input type="text" name="name" value="` + name + `">
-            <input type="text" hidden name="ID" value="` + ID + `">
-            <button type="submit">Update</button>
-        </form>`
+	    data := struct {ID string; Name string}{ID: ID, Name: name}
 
-        w.Header().Set("Content-Type", "text/html")
-        w.Write([]byte(htmlContent))
+	    tmpl := template.Must(template.ParseFiles("edit.html"))
+	    err :=  tmpl.Execute(w, data)
+	    if err != nil {
+		    http.Error(w, err.Error(), http.StatusInternalServerError)
+		    return
+	    }
     }
 
 	h5 := func(w http.ResponseWriter, r *http.Request) {
 
-name := r.PostFormValue("name")
-ID := r.PostFormValue("ID") 
-db := database.DB
+        name := r.PostFormValue("name")
+        ID := r.PostFormValue("ID") 
+        db := database.DB
 
-var task models.Task
-if err := db.First(&task, ID).Error; err != nil {
-    fmt.Printf("NOp")
-}
+        var task models.Task
+        if err := db.First(&task, ID).Error; err != nil {
+            fmt.Printf("NOp")
+        }
 
-task.Name = name // Asignar el valor del nombre directamente
+        task.Name = name 
 
-if err := db.Save(&task).Error; err != nil {
-    fmt.Printf("Error al guardar la tarea: %s\n", err)
-}
+        if err := db.Save(&task).Error; err != nil {
+            fmt.Printf("Error al guardar la tarea: %s\n", err)
+        }
 
-htmlStr := fmt.Sprintf("<li>%s</li>", task.Name) // Usar task.Name en lugar de name
-tmpl, _ := template.New("t").Parse(htmlStr)
-tmpl.Execute(w, nil)
+	    data := struct {Task models.Task}{Task: task}
+
+	    tmpl := template.Must(template.ParseFiles("item.html"))
+	    err :=  tmpl.Execute(w, data)
+	    if err != nil {
+		    http.Error(w, err.Error(), http.StatusInternalServerError)
+		    return
+	    }
+
 	}
 
 

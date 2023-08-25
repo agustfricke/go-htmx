@@ -20,7 +20,7 @@
             {{ range . }} 
                 <li id="item-{{ .ID }}">
                     {{ .Name }}  
-                    <button hx-get="/edit/form?name={{ .Name }}&ID={{ .ID }}" hx-swap="outerHTML">
+                    <button hx-get="/edit/form?name={{ .Name }}&ID={{ .ID }}" hx-target="#item-{{ .ID }}">
                         Edit
                     </button>
 
