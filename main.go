@@ -20,7 +20,7 @@ func main() {
 	http.HandleFunc("/add/", handlers.CreateTask)
 	http.HandleFunc("/delete/", handlers.DeleteTask)
 	http.HandleFunc("/edit/form/", handlers.FormEditTask)
-	http.HandleFunc("/put/", handlers.EditTask)
+	http.HandleFunc("/put", handlers.EditTask)
     http.HandleFunc("/", handlers.GetTasks)
 
 	fmt.Println("Runnning in port 8000")
