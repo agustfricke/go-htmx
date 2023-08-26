@@ -1,5 +1,5 @@
 ##### GO + HTMX
-- Simple CRUD de go y htmx con tailwind css, usando una base de datos postres con docker
+- Simple CRUD de go y htmx con tailwind css, usando una base de datos postgres con docker
 
 
 ### Instalar y usar
