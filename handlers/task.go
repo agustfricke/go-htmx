@@ -38,7 +38,7 @@ func CreateTask(w http.ResponseWriter, r *http.Request) {
         }
 	    data := struct {Task models.Task}{Task: task,}
 
-	    tmpl := template.Must(template.ParseFiles("templates/index.html"))
+	    tmpl := template.Must(template.ParseFiles("templates/item.html"))
 	    err :=  tmpl.Execute(w, data)
 	    if err != nil {
 		    http.Error(w, err.Error(), http.StatusInternalServerError)
