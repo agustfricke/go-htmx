@@ -7,6 +7,16 @@
 2. Allow adding a border to an element by just adding a border-width. (https://github.com/tailwindcss/tailwindcss/pull/116)
 */
 
+.spinner{
+    display:none;
+}
+.htmx-request .my-indicator{
+    display:inline;
+}
+.htmx-request.my-indicator{
+    display:inline;
+}
+
 *,
 ::before,
 ::after {
