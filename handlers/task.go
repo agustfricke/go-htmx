@@ -85,6 +85,7 @@ func EditTask(w http.ResponseWriter, r *http.Request) {
         db := database.DB
 
         var task models.Task
+
         if err := db.First(&task, ID).Error; err != nil {
             fmt.Printf("NOp")
         }
