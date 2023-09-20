@@ -5,8 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="public/index.css" rel="stylesheet" />
-    <script src="public/htmx.min.js"></script>
-    <script src="public/main.js"></script>
+
     <title>GO HTMX CRUD</title>
   </head>
 
@@ -36,7 +35,7 @@
           Edit
         </button>
         <button
-          hx-delete="/delete/{{ .ID }}"
+          hx-delete="/delete?ID={{ .ID }}"
           hx-swap="delete"
           hx-target="#item-{{ .ID }}"
           hx-indicator="#spinner-delete-{{ .ID }}"
@@ -48,5 +47,8 @@
       </li>
       {{ end }}
     </ul>
+
+    <script src="public/main.js"></script>
+    <script src="public/htmx.min.js"></script>
   </body>
 </html>
