@@ -1,18 +1,24 @@
-##### GO + HTMX
+## GO + HTMX
+Simple CRUD with Go and Htmx
 
--   Simple CRUD de go y htmx usando una base de datos postgres con docker.
+### Requirements
+- Go
+- Docker
 
--   YouTube: https://techconagust.com/es/go-htmx-crud
--   Articulo : https://www.youtube.com/watch?v=7vY5KOAbhqo&t=367s
+### How to use
+The commands are for Mac and Linux.
 
-### Instalar y usar
-
+- Clone the repository
 ```bash
-git clone https://github.com/agustfricke/go-htmx-crud.git
-cd go-htmx-crud
-mv .env.example .env
+git clone https://github.com/agustfricke/go-htmx-crud.git ~/
+cd ~/go-htmx-crud
+```
+
+- Setup the environment, run the database and the application
+```bash
+mv .example.env .env
 docker run --name postgres_db -e POSTGRES_USER=username -e POSTGRES_PASSWORD=password -e POSTGRES_DB=super_db -p 5432:5432 -d postgres
 go run main.go
 ```
 
-## Dale una estrella ⭐
+## Give it a ⭐
